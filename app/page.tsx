@@ -51,17 +51,52 @@ export default function Page() {
       { rootMargin: "-50% 0px -50% 0px", threshold: 0 }
     );
     sections.forEach((s) => observer.observe(s));
+
+    // Dynamic island: nav pill grows/shrinks on scroll
+    const header = document.querySelector("header.glass-nav-dynamic") as HTMLElement | null;
+    const onScroll = () => {
+      if (!header) return;
+      if (window.scrollY > 20) {
+        header.classList.remove("at-top");
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+        header.classList.add("at-top");
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Reveal on scroll — fade + translateY overshoot via IntersectionObserver
+    const reveals = Array.from(document.querySelectorAll(".reveal")) as HTMLElement[];
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    reveals.forEach((el) => revealObserver.observe(el));
+
     return () => {
       anchors.forEach((a) => a.removeEventListener("click", handler));
       observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      revealObserver.disconnect();
     };
   }, []);
 
   return (
     <>
-<header className="fixed top-0 left-0 right-0 z-50 bg-canvas-dark/80 backdrop-blur-xl border-b border-white/10"><div className="h-16 max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop flex items-center justify-between"><div className="flex items-center gap-6"><a className="font-title-md text-title-md tracking-tight text-on-surface hover:text-canvas-pure-white transition-colors" data-path="portfolio-overview" href="#">Prashant Pal</a></div><nav className="hidden md:flex items-center gap-8" data-active-classes="text-canvas-pure-white font-medium"><a className="font-body-md text-body-md text-text-secondary-dark hover:text-on-surface transition-colors" data-path="about" href="#about">About</a><a className="font-body-md text-body-md text-text-secondary-dark hover:text-on-surface transition-colors" data-path="projects" href="#projects">Projects</a><a className="font-body-md text-body-md text-text-secondary-dark hover:text-on-surface transition-colors" data-path="experience" href="#experience">Experience</a><a className="font-body-md text-body-md text-text-secondary-dark hover:text-on-surface transition-colors" data-path="skills" href="#skills">Skills</a><a className="font-body-md text-body-md text-text-secondary-dark hover:text-on-surface transition-colors" data-path="contact" href="#contact">Contact</a></nav><div className="flex items-center gap-4 mr-12"><a className="hidden sm:inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md hover:bg-accent-electric-hover transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]" href="mailto:palprashant156@gmail.com">Get in touch</a><div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span className="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main className="w-full pt-16 bg-background"><div className="flex flex-col w-full">
+<header className="fixed top-4 left-4 right-4 md:left-8 md:right-8 lg:left-12 lg:right-20 z-50 glass-nav glass-nav-dynamic at-top h-[64px] flex items-center spring-hover"><div className="h-full w-full max-w-[75rem] mx-auto px-6 md:px-8 flex items-center justify-between"><div className="flex items-center gap-6"><a className="font-title-md text-title-md tracking-tight text-on-surface hover:text-canvas-pure-white transition-colors" data-path="portfolio-overview" href="#">Prashant Pal</a></div><nav className="hidden md:flex items-center gap-8" data-active-classes="text-canvas-pure-white font-medium"><a className="font-body-md text-body-md text-text-secondary-dark hover:text-on-surface transition-colors spring-link" data-path="about" href="#about">About</a><a className="font-body-md text-body-md text-text-secondary-dark hover:text-on-surface transition-colors spring-link" data-path="projects" href="#projects">Projects</a><a className="font-body-md text-body-md text-text-secondary-dark hover:text-on-surface transition-colors spring-link" data-path="experience" href="#experience">Experience</a><a className="font-body-md text-body-md text-text-secondary-dark hover:text-on-surface transition-colors spring-link" data-path="skills" href="#skills">Skills</a><a className="font-body-md text-body-md text-text-secondary-dark hover:text-on-surface transition-colors spring-link" data-path="contact" href="#contact">Contact</a></nav><div className="flex items-center gap-4 mr-12"><a className="hidden sm:inline-flex items-center justify-center px-5 py-2 rounded-full glass-button-primary spring-hover text-on-primary-container font-label-md text-label-md" href="mailto:palprashant156@gmail.com">Get in touch</a><div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span className="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main className="w-full pt-16 bg-background"><div className="flex flex-col w-full">
 {/* SECTION 1: HERO (Apple Cinematic Dark Space) */}
-<section className="relative w-full overflow-hidden bg-canvas-pure-black py-28 md:py-36 flex flex-col items-center justify-center text-center">
+<section className="relative w-full overflow-hidden bg-canvas-pure-black py-28 md:py-36 flex flex-col items-center justify-center text-center reveal">
+<div className="ambient-glow ambient-glow-hero" aria-hidden></div>
+<div className="ambient-glow ambient-glow-soft" style={{ left: "20%", top: "60%", background: "radial-gradient(ellipse at center, rgba(139,122,255,0.18) 0%, transparent 70%)" }} aria-hidden></div>
 <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
 <div className="w-[600px] md:w-[900px] h-[360px] md:h-[500px] rounded-full blur-[130px] opacity-70" style={{ background: "var(--hero-glow-1)", transition: "background 700ms ease" }}></div>
 <div className="w-[300px] md:w-[480px] h-[220px] rounded-full blur-[90px] opacity-60" style={{ background: "var(--hero-glow-2)", transition: "background 700ms ease" }}></div>
@@ -78,7 +113,7 @@ export default function Page() {
         Full Stack Developer — Building scalable web applications with React, Node.js & NestJS.
       </p>
 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-16">
-<a className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-primary-container text-canvas-pure-white font-title-md text-title-md hover:bg-accent-electric-hover transition-all duration-300 shadow-xl shadow-primary-container/25 hover:scale-[1.02] active:scale-[0.98]" href="#projects">
+<a className="inline-flex items-center justify-center px-8 py-3.5 rounded-full glass-button-primary spring-hover text-canvas-pure-white font-title-md text-title-md shadow-xl" href="#projects">
           View My Work
         </a>
 <a className="inline-flex items-center gap-2 font-title-md text-title-md text-primary hover:text-canvas-pure-white transition-colors duration-200 group" href="mailto:palprashant156@gmail.com">
@@ -86,7 +121,7 @@ export default function Page() {
 <span className="material-symbols-outlined text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200">arrow_outward</span>
 </a>
 </div>
-<div className="w-full max-w-3xl rounded-full bg-surface-container-lowest/80 backdrop-blur-md px-6 py-3.5 flex flex-wrap items-center justify-around gap-4 text-text-muted-dark font-label-md text-label-md">
+<div className="w-full max-w-3xl rounded-full glass-panel px-6 py-3.5 flex flex-wrap items-center justify-around gap-4 text-text-muted-dark font-label-md text-label-md">
 <div className="flex items-center gap-2">
 <span className="text-primary font-bold">40%</span>
 <span>Backend Stability</span>
@@ -105,7 +140,7 @@ export default function Page() {
 </div>
 </section>
 {/* SECTION 2: ABOUT (Gallery-Grade Pure White Editorial) */}
-<section className="w-full bg-canvas-pure-white text-canvas-dark py-24 md:py-32" id="about">
+<section className="w-full bg-canvas-pure-white text-canvas-dark py-24 md:py-32 reveal" id="about">
 <div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop">
 <div className="font-label-md text-label-md uppercase tracking-wider text-primary-container mb-4">
         Engineering Philosophy
@@ -133,28 +168,28 @@ export default function Page() {
 </div>
 </div>
 <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-<div className="rounded-lg bg-canvas-light-gray p-8 flex flex-col justify-between shadow-sm">
+<div className="rounded-[24px] glass-panel-light spring-card p-8 flex flex-col justify-between">
 <div className="font-display-xl text-display-xl text-canvas-dark font-bold tracking-tight">40%</div>
 <div>
 <div className="font-title-md text-title-md text-canvas-dark font-medium mb-1">Backend Stability</div>
 <div className="font-body-md text-body-md text-text-muted-light">Sustained under peak burst traffic with zero unhandled drop-offs.</div>
 </div>
 </div>
-<div className="rounded-lg bg-canvas-light-gray p-8 flex flex-col justify-between shadow-sm">
+<div className="rounded-[24px] glass-panel-light spring-card p-8 flex flex-col justify-between">
 <div className="font-display-xl text-display-xl text-canvas-dark font-bold tracking-tight">30%</div>
 <div>
 <div className="font-title-md text-title-md text-canvas-dark font-medium mb-1">Memory Overhead</div>
 <div className="font-body-md text-body-md text-text-muted-light">Optimized Node.js garbage collection and stream pipelines.</div>
 </div>
 </div>
-<div className="rounded-lg bg-canvas-light-gray p-8 flex flex-col justify-between shadow-sm">
+<div className="rounded-[24px] glass-panel-light spring-card p-8 flex flex-col justify-between">
 <div className="font-display-xl text-display-xl text-canvas-dark font-bold tracking-tight">30%</div>
 <div>
 <div className="font-title-md text-title-md text-canvas-dark font-medium mb-1">User Engagement</div>
 <div className="font-body-md text-body-md text-text-muted-light">Instant reactive feedback with sub-50ms UI response times.</div>
 </div>
 </div>
-<div className="rounded-lg bg-canvas-light-gray p-8 flex flex-col justify-between shadow-sm">
+<div className="rounded-[24px] glass-panel-light spring-card p-8 flex flex-col justify-between">
 <div className="font-display-xl text-display-xl text-canvas-dark font-bold tracking-tight">40%</div>
 <div>
 <div className="font-title-md text-title-md text-canvas-dark font-medium mb-1">LCP Improvement</div>
@@ -168,7 +203,7 @@ export default function Page() {
 {/* SECTION 3: FEATURED PROJECTS */}
 <div className="flex flex-col w-full" id="projects">
 {/* Project 1: Dark Canvas (Fraud Monitoring) */}
-<section className="w-full bg-canvas-dark text-on-surface py-24 md:py-32">
+<section className="w-full bg-canvas-dark text-on-surface py-24 md:py-32 reveal">
 <div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop">
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div className="lg:col-span-5 flex flex-col">
@@ -195,14 +230,15 @@ export default function Page() {
 <span className="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">GeoIP</span>
 </div>
 <div>
-<a className="inline-flex items-center gap-2 text-primary font-title-md text-title-md hover:text-canvas-pure-white transition-colors group" href="#contact">
+<a className="inline-flex items-center gap-2 text-primary font-title-md text-title-md hover:text-canvas-pure-white transition-colors group spring-link" href="#contact">
 <span>View System Architecture</span>
 <span className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
 </a>
 </div>
 </div>
-<div className="lg:col-span-7">
-<div className="rounded-lg bg-surface-container-lowest p-6 md:p-8 shadow-2xl overflow-hidden relative">
+<div className="lg:col-span-7 relative">
+<div className="absolute -inset-6 -z-10 rounded-[32px] blur-[50px] opacity-20" style={{ background: "var(--hero-glow-1)", transition: "background 700ms ease" }} aria-hidden></div>
+<div className="rounded-[32px] glass-panel spring-card p-6 md:p-8 overflow-hidden relative glass-tint-cool">
 <div className="flex items-center justify-between pb-6 mb-6">
 <div className="flex items-center gap-2">
 <span className="w-3 h-3 rounded-full bg-error/70"></span>
@@ -214,17 +250,17 @@ export default function Page() {
 </div>
 {/* Inline Mock SVG Telemetry Spark & Nodes */}
 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-<div className="p-4 rounded-DEFAULT bg-surface-container">
+<div className="p-4 rounded-[20px] glass-panel-subtle">
 <div className="font-label-sm text-label-sm text-text-muted-dark mb-1">Inbound Velocity</div>
 <div className="font-title-lg text-title-lg text-canvas-pure-white font-bold">14,280 txn/s</div>
 <div className="text-primary font-label-sm text-label-sm mt-1">↑ 12% peak surge</div>
 </div>
-<div className="p-4 rounded-DEFAULT bg-surface-container">
+<div className="p-4 rounded-[20px] glass-panel-subtle">
 <div className="font-label-sm text-label-sm text-text-muted-dark mb-1">Blocked Exploits</div>
 <div className="font-title-lg text-title-lg text-error font-bold">2,143</div>
 <div className="text-on-surface-variant font-label-sm text-label-sm mt-1">99.98% precision</div>
 </div>
-<div className="p-4 rounded-DEFAULT bg-surface-container">
+<div className="p-4 rounded-[20px] glass-panel-subtle">
 <div className="font-label-sm text-label-sm text-text-muted-dark mb-1">Latency Overhead</div>
 <div className="font-title-lg text-title-lg text-primary font-bold">11.4 ms</div>
 <div className="text-on-surface-variant font-label-sm text-label-sm mt-1">Stream pipeline</div>
@@ -265,11 +301,12 @@ export default function Page() {
 </div>
 </section>
 {/* Project 2: Light Canvas (Doomscrolling Tracker) */}
-<section className="w-full bg-canvas-pure-white text-canvas-dark py-24 md:py-32">
+<section className="w-full bg-canvas-pure-white text-canvas-dark py-24 md:py-32 reveal">
 <div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop">
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-<div className="lg:col-span-7 order-2 lg:order-1">
-<div className="rounded-lg bg-canvas-light-gray p-6 md:p-8 shadow-md">
+<div className="lg:col-span-7 order-2 lg:order-1 relative">
+<div className="absolute -inset-6 -z-10 rounded-[32px] blur-[50px] opacity-15" style={{ background: "var(--hero-glow-2)", transition: "background 700ms ease" }} aria-hidden></div>
+<div className="rounded-[32px] glass-panel-light spring-card p-6 md:p-8 overflow-hidden relative glass-tint-warm">
 <div className="flex items-center justify-between pb-6 mb-6">
 <div className="flex items-center gap-3">
 <span className="material-symbols-outlined text-primary-container">psychology</span>
@@ -349,7 +386,7 @@ export default function Page() {
 <span className="px-3 py-1 rounded-full bg-canvas-light-gray text-canvas-dark font-label-sm text-label-sm">Tailwind CSS</span>
 </div>
 <div>
-<a className="inline-flex items-center gap-2 text-primary-container font-title-md text-title-md hover:text-accent-electric-hover transition-colors group" href="#contact">
+<a className="inline-flex items-center gap-2 text-primary-container font-title-md text-title-md hover:text-accent-electric-hover transition-colors group spring-link" href="#contact">
 <span>View Behavioral Metrics</span>
 <span className="material-symbols-outlined text-primary-container group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
 </a>
@@ -359,7 +396,7 @@ export default function Page() {
 </div>
 </section>
 {/* Project 3: Dark Obsidian (Fuel Reservation) */}
-<section className="w-full bg-surface-container-lowest text-on-surface py-24 md:py-32">
+<section className="w-full bg-surface-container-lowest text-on-surface py-24 md:py-32 reveal">
 <div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop">
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div className="lg:col-span-5 flex flex-col">
@@ -382,14 +419,15 @@ export default function Page() {
 <span className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Vercel</span>
 </div>
 <div>
-<a className="inline-flex items-center gap-2 text-primary font-title-md text-title-md hover:text-canvas-pure-white transition-colors group" href="#contact">
+<a className="inline-flex items-center gap-2 text-primary font-title-md text-title-md hover:text-canvas-pure-white transition-colors group spring-link" href="#contact">
 <span>View System Architecture</span>
 <span className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
 </a>
 </div>
 </div>
-<div className="lg:col-span-7">
-<div className="rounded-lg bg-surface-container p-6 md:p-8 shadow-2xl">
+<div className="lg:col-span-7 relative">
+<div className="absolute -inset-6 -z-10 rounded-[32px] blur-[50px] opacity-20" style={{ background: "var(--hero-glow-1)", transition: "background 700ms ease" }} aria-hidden></div>
+<div className="rounded-[32px] glass-panel spring-card p-6 md:p-8 overflow-hidden relative glass-tint-cool">
 <div className="flex items-center justify-between pb-6 mb-6">
 <div>
 <div className="font-title-md text-title-md text-canvas-pure-white font-medium">Terminal Station Node #04</div>
@@ -443,11 +481,12 @@ export default function Page() {
 </div>
 </section>
 {/* Project 4: Light Canvas (Quick Serve Marketplace) */}
-<section className="w-full bg-canvas-pure-white text-canvas-dark py-24 md:py-32">
+<section className="w-full bg-canvas-pure-white text-canvas-dark py-24 md:py-32 reveal">
 <div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop">
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-<div className="lg:col-span-7 order-2 lg:order-1">
-<div className="rounded-lg bg-canvas-light-gray p-6 md:p-8 shadow-md">
+<div className="lg:col-span-7 order-2 lg:order-1 relative">
+<div className="absolute -inset-6 -z-10 rounded-[32px] blur-[50px] opacity-15" style={{ background: "var(--hero-glow-2)", transition: "background 700ms ease" }} aria-hidden></div>
+<div className="rounded-[32px] glass-panel-light spring-card p-6 md:p-8 overflow-hidden relative glass-tint-warm">
 <div className="flex items-center justify-between pb-6 mb-6">
 <div>
 <div className="font-title-md text-title-md font-semibold text-canvas-dark">Quick Serve Dispatch</div>
@@ -469,7 +508,7 @@ export default function Page() {
 <div className="font-label-sm text-label-sm text-text-muted-light">HVAC & Electrical Specialist • 4.96 ★ (142 reviews)</div>
 </div>
 </div>
-<button className="px-4 py-1.5 rounded-full bg-primary-container text-canvas-pure-white font-label-md text-label-md hover:bg-accent-electric-hover transition-colors">
+<button className="px-4 py-1.5 rounded-full glass-button-primary spring-hover text-canvas-pure-white font-label-md text-label-md">
                     Dispatch
                   </button>
 </div>
@@ -486,7 +525,7 @@ export default function Page() {
 <div className="font-label-sm text-label-sm text-text-muted-light">Commercial Barista & Catering • 4.91 ★ (88 reviews)</div>
 </div>
 </div>
-<button className="px-4 py-1.5 rounded-full bg-primary-container text-canvas-pure-white font-label-md text-label-md hover:bg-accent-electric-hover transition-colors">
+<button className="px-4 py-1.5 rounded-full glass-button-primary spring-hover text-canvas-pure-white font-label-md text-label-md">
                     Dispatch
                   </button>
 </div>
@@ -516,7 +555,7 @@ export default function Page() {
 <span className="px-3 py-1 rounded-full bg-canvas-light-gray text-canvas-dark font-label-sm text-label-sm">RESTful APIs</span>
 </div>
 <div>
-<a className="inline-flex items-center gap-2 text-primary-container font-title-md text-title-md hover:text-accent-electric-hover transition-colors group" href="#contact">
+<a className="inline-flex items-center gap-2 text-primary-container font-title-md text-title-md hover:text-accent-electric-hover transition-colors group spring-link" href="#contact">
 <span>View Marketplace Architecture</span>
 <span className="material-symbols-outlined text-primary-container group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
 </a>
@@ -527,13 +566,13 @@ export default function Page() {
 </section>
 </div>
 {/* SECTION 4: EXPERIENCE TIMELINE */}
-<section className="w-full bg-canvas-dark text-on-surface py-24 md:py-32" id="experience">
+<section className="w-full bg-canvas-dark text-on-surface py-24 md:py-32 reveal" id="experience">
 <div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop">
 <div className="text-center max-w-2xl mx-auto mb-20">
 <span className="font-label-md text-label-md uppercase tracking-wider text-primary mb-2 block">Career Milestones</span>
 <h2 className="font-headline-lg text-headline-lg text-canvas-pure-white tracking-tight">Professional Experience</h2>
 </div>
-<div className="relative max-w-3xl mx-auto">
+<div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-20"><div className="w-[600px] h-[300px] rounded-full blur-[80px]" style={{ background: "var(--hero-glow-1)" }}></div></div><div className="relative max-w-3xl mx-auto">
 {/* Center glowing track line */}
 <div className="absolute top-0 bottom-0 left-4 md:left-1/2 w-0.5 -translate-x-1/2 bg-surface-variant"></div>
 <div className="space-y-16">
@@ -572,15 +611,15 @@ export default function Page() {
 </div>
 </section>
 {/* SECTION 5: SKILLS MATRIX */}
-<section className="w-full bg-canvas-pure-white text-canvas-dark py-24 md:py-32" id="skills">
-<div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop">
+<section className="w-full bg-canvas-pure-white text-canvas-dark py-24 md:py-32 reveal relative overflow-hidden" id="skills">
+<div className="absolute inset-0 pointer-events-none opacity-15"><div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full blur-[90px]" style={{ background: "var(--hero-glow-2)" }}></div></div><div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop relative">
 <div className="text-center max-w-2xl mx-auto mb-16">
 <span className="font-label-md text-label-md uppercase tracking-wider text-primary-container mb-2 block">Capability Matrix</span>
 <h2 className="font-headline-lg text-headline-lg text-canvas-dark tracking-tight">Technical Expertise & Architecture</h2>
 </div>
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 {/* Frontend */}
-<div className="rounded-lg bg-canvas-light-gray p-8 flex flex-col justify-between shadow-sm">
+<div className="rounded-[24px] glass-panel-light spring-card p-8 flex flex-col justify-between">
 <div>
 <div className="w-12 h-12 rounded-full bg-canvas-pure-white flex items-center justify-center text-primary-container shadow-sm mb-6">
 <span className="material-symbols-outlined text-[24px]">terminal</span>
@@ -598,7 +637,7 @@ export default function Page() {
 </div>
 </div>
 {/* Backend */}
-<div className="rounded-lg bg-canvas-light-gray p-8 flex flex-col justify-between shadow-sm">
+<div className="rounded-[24px] glass-panel-light spring-card p-8 flex flex-col justify-between">
 <div>
 <div className="w-12 h-12 rounded-full bg-canvas-pure-white flex items-center justify-center text-primary-container shadow-sm mb-6">
 <span className="material-symbols-outlined text-[24px]">dns</span>
@@ -616,7 +655,7 @@ export default function Page() {
 </div>
 </div>
 {/* Databases */}
-<div className="rounded-lg bg-canvas-light-gray p-8 flex flex-col justify-between shadow-sm">
+<div className="rounded-[24px] glass-panel-light spring-card p-8 flex flex-col justify-between">
 <div>
 <div className="w-12 h-12 rounded-full bg-canvas-pure-white flex items-center justify-center text-primary-container shadow-sm mb-6">
 <span className="material-symbols-outlined text-[24px]">database</span>
@@ -633,7 +672,7 @@ export default function Page() {
 </div>
 </div>
 {/* Cloud & DevOps */}
-<div className="rounded-lg bg-canvas-light-gray p-8 flex flex-col justify-between shadow-sm">
+<div className="rounded-[24px] glass-panel-light spring-card p-8 flex flex-col justify-between">
 <div>
 <div className="w-12 h-12 rounded-full bg-canvas-pure-white flex items-center justify-center text-primary-container shadow-sm mb-6">
 <span className="material-symbols-outlined text-[24px]">cloud_sync</span>
@@ -654,7 +693,7 @@ export default function Page() {
 </div>
 </section>
 {/* SECTION 6: CERTIFICATIONS STRIP */}
-<section className="w-full bg-canvas-dark py-12">
+<section className="w-full bg-canvas-dark py-12 reveal">
 <div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop">
 <div className="flex flex-wrap justify-center items-center gap-8 md:gap-14 font-label-md text-label-md text-text-secondary-dark">
 <div className="flex items-center gap-2 hover:text-canvas-pure-white transition-colors">
@@ -677,8 +716,8 @@ export default function Page() {
 </div>
 </section>
 {/* SECTION 7: CONTACT / OUTRO */}
-<section className="w-full bg-canvas-pure-black py-28 md:py-36 text-center" id="contact">
-<div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop flex flex-col items-center">
+<section className="w-full bg-canvas-pure-black py-28 md:py-36 text-center reveal relative overflow-hidden" id="contact">
+<div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-20"><div className="w-[900px] h-[500px] rounded-full blur-[100px]" style={{ background: "var(--hero-glow-1)" }}></div></div><div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop flex flex-col items-center relative">
 <span className="font-label-md text-label-md uppercase tracking-wider text-primary mb-4 block">Get in Touch</span>
 <h2 className="font-headline-lg text-headline-lg text-canvas-pure-white tracking-tight mb-6 max-w-2xl">
         Let’s build something great.
@@ -687,7 +726,7 @@ export default function Page() {
         Available for full stack engineering leadership, complex system design engagements, and high-performance product development.
       </p>
 <div className="inline-flex flex-col sm:flex-row items-center gap-4 mb-10">
-<div className="flex items-center gap-2 px-6 py-3 rounded-full bg-surface-container">
+<div className="flex items-center gap-2 px-6 py-3 rounded-full glass-panel">
 <a className="font-title-md text-title-md text-canvas-pure-white hover:text-primary transition-colors" href="mailto:palprashant156@gmail.com">
             palprashant156@gmail.com
           </a>
@@ -699,23 +738,23 @@ export default function Page() {
                 <span>{copied ? "Copied!" : "Copy"}</span>
               </button>
 </div>
-<a className="px-8 py-3.5 rounded-full bg-primary-container text-canvas-pure-white font-title-md text-title-md hover:bg-accent-electric-hover transition-all duration-200 shadow-lg shadow-primary-container/20" href="mailto:palprashant156@gmail.com">
+<a className="px-8 py-3.5 rounded-full glass-button-primary spring-hover text-canvas-pure-white font-title-md text-title-md" href="mailto:palprashant156@gmail.com">
           Send Email
         </a>
 </div>
 <div className="flex items-center gap-4 font-label-md text-label-md">
-<a className="px-5 py-2.5 rounded-full bg-surface-container text-text-secondary-dark hover:text-canvas-pure-white hover:bg-surface-container-high transition-all flex items-center gap-2" href="https://linkedin.com" rel="noreferrer" target="_blank">
+<a className="px-5 py-2.5 rounded-full glass-panel spring-hover text-text-secondary-dark flex items-center gap-2" href="https://linkedin.com" rel="noreferrer" target="_blank">
 <span>LinkedIn</span>
 <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
 </a>
-<a className="px-5 py-2.5 rounded-full bg-surface-container text-text-secondary-dark hover:text-canvas-pure-white hover:bg-surface-container-high transition-all flex items-center gap-2" href="https://github.com" rel="noreferrer" target="_blank">
+<a className="px-5 py-2.5 rounded-full glass-panel spring-hover text-text-secondary-dark flex items-center gap-2" href="https://github.com" rel="noreferrer" target="_blank">
 <span>GitHub</span>
 <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
 </a>
 </div>
 </div>
 </section>
-</div></main><footer className="w-full bg-canvas-card-dark border-t border-border-dark"><div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop py-12 md:py-16"><div className="flex items-center gap-2 pb-8 border-b border-border-dark text-label-sm font-label-sm text-text-muted-dark"><a className="hover:text-on-surface transition-colors" href="#">Portfolio</a><span>/</span><span className="text-on-surface-variant">Prashant Pal</span><span>/</span><span className="text-on-surface">Full Stack Engineer</span></div><div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-10 border-b border-border-dark"><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Featured Systems</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><a className="hover:text-primary transition-colors" href="#projects">Fraud Monitoring Platform</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Doomscrolling Analytics Engine</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Daily Fuel Logistics</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Quick Serve Microservices</a></li></ul></div><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Core Engineering Stack</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><span className="hover:text-on-surface transition-colors">Node.js & NestJS Architecture</span></li><li><span className="hover:text-on-surface transition-colors">React 19 & Next.js App Router</span></li><li><span className="hover:text-on-surface transition-colors">PostgreSQL & Redis Caching</span></li><li><span className="hover:text-on-surface transition-colors">AWS Infrastructure & Docker</span></li></ul></div><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Connect & Dispatch</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="https://github.com" rel="noreferrer" target="_blank">GitHub</a></li><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="https://linkedin.com" rel="noreferrer" target="_blank">LinkedIn</a></li><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="mailto:palprashant156@gmail.com">palprashant156@gmail.com</a></li></ul></div></div><div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 font-label-sm text-label-sm text-text-muted-dark"><div>Copyright © 2025 Prashant Pal. All rights reserved. Built with precision & performance in mind.</div><div className="flex items-center gap-6"><a className="hover:text-on-surface transition-colors" href="#">Architecture Blueprint</a><a className="hover:text-on-surface transition-colors" href="#">Telemetry & Privacy</a><a className="hover:text-on-surface transition-colors" href="#">Sitemap</a></div></div></div></footer>
+</div></main><footer className="w-full bg-canvas-card-dark border-t border-border-dark reveal" style={{ backdropFilter: "blur(20px) saturate(150%)" }}><div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop py-12 md:py-16"><div className="flex items-center gap-2 pb-8 border-b border-border-dark text-label-sm font-label-sm text-text-muted-dark"><a className="hover:text-on-surface transition-colors" href="#">Portfolio</a><span>/</span><span className="text-on-surface-variant">Prashant Pal</span><span>/</span><span className="text-on-surface">Full Stack Engineer</span></div><div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-10 border-b border-border-dark"><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Featured Systems</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><a className="hover:text-primary transition-colors" href="#projects">Fraud Monitoring Platform</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Doomscrolling Analytics Engine</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Daily Fuel Logistics</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Quick Serve Microservices</a></li></ul></div><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Core Engineering Stack</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><span className="hover:text-on-surface transition-colors">Node.js & NestJS Architecture</span></li><li><span className="hover:text-on-surface transition-colors">React 19 & Next.js App Router</span></li><li><span className="hover:text-on-surface transition-colors">PostgreSQL & Redis Caching</span></li><li><span className="hover:text-on-surface transition-colors">AWS Infrastructure & Docker</span></li></ul></div><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Connect & Dispatch</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="https://github.com" rel="noreferrer" target="_blank">GitHub</a></li><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="https://linkedin.com" rel="noreferrer" target="_blank">LinkedIn</a></li><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="mailto:palprashant156@gmail.com">palprashant156@gmail.com</a></li></ul></div></div><div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 font-label-sm text-label-sm text-text-muted-dark"><div>Copyright © 2025 Prashant Pal. All rights reserved. Built with precision & performance in mind.</div><div className="flex items-center gap-6"><a className="hover:text-on-surface transition-colors" href="#">Architecture Blueprint</a><a className="hover:text-on-surface transition-colors" href="#">Telemetry & Privacy</a><a className="hover:text-on-surface transition-colors" href="#">Sitemap</a></div></div></div></footer>
 
 
     </>

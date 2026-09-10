@@ -39,29 +39,28 @@ export default function ThemeSwitcher() {
       className="fixed top-4 right-4 z-[100] flex flex-col items-end"
       // Ensure never overflows viewport on mobile — parent is fixed, dropdown anchored via right-0
     >
-      {/* Toggle button — icon-only, fixed top-right */}
+      {/* Toggle button — icon-only, fixed top-right, Liquid Glass */}
       <button
         aria-label="Toggle theme switcher"
         aria-expanded={open}
         aria-haspopup="menu"
         onClick={() => setOpen((v) => !v)}
-        className="w-10 h-10 rounded-full bg-[var(--surface-container)] border border-[var(--border-color)] backdrop-blur-xl flex items-center justify-center text-[var(--text-primary)] shadow-lg shadow-black/10 hover:bg-[var(--surface-container-high)] transition-all duration-300 hover:scale-[1.04] active:scale-[0.96] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
-        style={{ transition: "background-color 700ms ease, color 700ms ease, border-color 700ms ease, transform 200ms ease" }}
+        className="w-10 h-10 rounded-full glass-button spring-hover flex items-center justify-center text-[var(--text-primary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
       >
         <span className="material-symbols-outlined text-[20px] leading-none select-none" aria-hidden>
           {open ? "close" : current?.icon ?? "palette"}
         </span>
       </button>
 
-      {/* Dropdown panel */}
+      {/* Dropdown panel — Liquid Glass 24px */}
       <div
         role="menu"
         aria-orientation="vertical"
-        className={`mt-3 w-[min(280px,calc(100vw-2rem))] rounded-2xl bg-[var(--surface-container)] border border-[var(--border-color)] backdrop-blur-xl shadow-2xl shadow-black/20 overflow-hidden
+        className={`mt-3 w-[min(280px,calc(100vw-2rem))] rounded-[24px] glass-panel overflow-hidden
           ${open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}
         `}
         style={{
-          transition: "opacity 280ms ease, transform 280ms cubic-bezier(0.16,1,0.3,1), background-color 700ms ease, border-color 700ms ease",
+          transition: "opacity 280ms ease, transform 280ms cubic-bezier(0.16,1,0.3,1), background 700ms ease, border-color 700ms ease",
         }}
       >
         {/* Header */}

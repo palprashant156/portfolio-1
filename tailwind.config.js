@@ -69,12 +69,22 @@ module.exports = {
         "on-secondary-fixed": "var(--text-on-dark, #001c38)",
         "inverse-on-surface": "var(--surface, #303032)",
         "border-dark": "var(--border-color, #333336)",
+        glass: "rgba(255,255,255,0.15)",
+        "glass-strong": "rgba(255,255,255,0.18)",
+        "glass-subtle": "rgba(255,255,255,0.08)",
+        "glass-border": "rgba(255,255,255,0.2)",
       },
       borderRadius: {
         DEFAULT: "1rem",
         lg: "2rem",
         xl: "3rem",
         full: "9999px",
+      },
+      backdropBlur: {
+        30: "30px",
+      },
+      transitionTimingFunction: {
+        spring: "cubic-bezier(0.34, 1.56, 0.64, 1)",
       },
       spacing: {
         "gutter-mobile": "1rem",
