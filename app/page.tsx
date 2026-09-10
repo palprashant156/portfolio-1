@@ -565,6 +565,269 @@ export default function Page() {
 </div>
 </div>
 </section>
+
+{/* Project 5: Dark Canvas (AI Health Screening Voice App) */}
+<section className="w-full bg-canvas-dark text-on-surface py-24 md:py-32 reveal">
+<div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop">
+<div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div className="lg:col-span-5 flex flex-col">
+<div className="flex items-center gap-2 mb-4">
+<span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span className="font-label-sm text-label-sm uppercase tracking-wider text-text-secondary-dark">Live Voice AI • Bilingual</span>
+</div>
+<h3 className="font-headline-lg text-headline-lg text-canvas-pure-white mb-4 tracking-tight">
+              AI Health Screening Voice App
+            </h3>
+<p className="font-body-lg text-body-lg text-text-secondary-dark mb-6">
+              Live push-to-talk voice conversation with an AI medical agent that conducts basic health screening — zero-latency via native Web Speech APIs, auto-detects Hindi/English, and outputs a structured JSON health report.
+            </p>
+<div className="p-4 rounded-DEFAULT bg-surface-container mb-6">
+<div className="font-label-sm text-label-sm text-primary uppercase mb-1">Measurable Impact</div>
+<div className="font-title-md text-title-md text-canvas-pure-white font-medium">Zero-cost, sub-300ms voice I/O with bilingual auto-detection and instant JSON report generation.</div>
+</div>
+<div className="flex flex-wrap gap-2 mb-8">
+<span className="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">React (Vite)</span>
+<span className="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Node.js</span>
+<span className="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Express.js</span>
+<span className="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">WebSockets</span>
+<span className="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Gemini API</span>
+<span className="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Web Speech API</span>
+</div>
+<div className="flex flex-wrap gap-3">
+<a href="https://github.com/palprashant156/AI-Health-Screening-Voice-App" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-button-primary spring-hover font-label-md text-label-md">
+<svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0.3a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 0.3z"/></svg>
+<span>View Code</span>
+<span className="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+</div>
+</div>
+<div className="lg:col-span-7 relative">
+<div className="absolute -inset-6 -z-10 rounded-[32px] blur-[50px] opacity-20" style={{ background: "var(--hero-glow-1)", transition: "background 700ms ease" }} aria-hidden></div>
+<div className="rounded-[32px] glass-panel spring-card p-6 md:p-8 overflow-hidden relative glass-tint-cool">
+<div className="flex items-center justify-between pb-6 mb-6">
+<div className="flex items-center gap-2">
+<span className="w-3 h-3 rounded-full bg-error/70"></span>
+<span className="w-3 h-3 rounded-full bg-tertiary/70"></span>
+<span className="w-3 h-3 rounded-full bg-primary/70"></span>
+<span className="ml-3 font-label-sm text-label-sm text-text-muted-dark">voice.health.agent — live session</span>
+</div>
+<span className="px-2.5 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm animate-pulse">● LIVE MIC</span>
+</div>
+<div className="grid grid-cols-3 gap-3 mb-6">
+<div className="p-3 rounded-[20px] glass-panel-subtle text-center">
+<div className="font-label-sm text-label-sm text-text-muted-dark">Latency</div>
+<div className="font-title-md text-title-md text-primary font-bold mt-1">&lt;300ms</div>
+<div className="font-label-sm text-label-sm text-text-muted-dark">STT → LLM → TTS</div>
+</div>
+<div className="p-3 rounded-[20px] glass-panel-subtle text-center">
+<div className="font-label-sm text-label-sm text-text-muted-dark">Languages</div>
+<div className="font-title-md text-title-md text-canvas-pure-white font-bold mt-1">HI / EN</div>
+<div className="font-label-sm text-label-sm text-primary">Auto-detect</div>
+</div>
+<div className="p-3 rounded-[20px] glass-panel-subtle text-center">
+<div className="font-label-sm text-label-sm text-text-muted-dark">Cost</div>
+<div className="font-title-md text-title-md text-tertiary font-bold mt-1">FREE</div>
+<div className="font-label-sm text-label-sm text-text-muted-dark">Native APIs</div>
+</div>
+</div>
+<div className="rounded-[20px] glass-panel-subtle p-4 mb-4">
+<div className="flex items-center gap-2 mb-3">
+<span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span className="font-label-sm text-label-sm text-text-secondary-dark">Push-to-Talk Transcript</span>
+<span className="ml-auto font-label-sm text-label-sm text-primary">हिन्दी • English</span>
+</div>
+<div className="space-y-2 font-body-md text-body-md">
+<div className="flex gap-2"><span className="text-primary font-bold">You:</span><span className="text-on-surface">“मुझे पिछले दो दिन से बुखार है”</span></div>
+<div className="flex gap-2"><span className="text-tertiary font-bold">AI:</span><span className="text-on-surface">“आपका तापमान कितना है? कोई अन्य लक्षण?”</span></div>
+</div>
+<div className="mt-3 flex items-center justify-center gap-2 py-2 rounded-full bg-surface-container-high/50">
+<span className="material-symbols-outlined text-primary text-[18px] animate-pulse">mic</span>
+<span className="font-label-sm text-label-sm text-text-muted-dark">Hold to talk • Release to send</span>
+<span className="w-20 h-1.5 rounded-full bg-surface-container overflow-hidden"><span className="block h-full w-[65%] bg-primary animate-pulse"></span></span>
+</div>
+</div>
+<div className="rounded-[20px] bg-surface-container-high p-3 font-mono text-[11px] leading-relaxed">
+<div className="flex items-center justify-between mb-1.5"><span className="font-label-sm text-label-sm text-text-muted-dark">Generated JSON Report</span><span className="px-2 py-0.5 rounded-full bg-primary text-on-primary font-label-sm">JSON</span></div>
+<div className="text-primary">{"{"}</div>
+<div className="pl-3 text-on-surface">"symptoms": ["fever","cough"], "duration": "2 days", "language": "hi",</div>
+<div className="pl-3 text-on-surface">"triage": "mild • self-care advised", "followUp": "if fever &gt; 101°F"</div>
+<div className="text-primary">{"}"}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+{/* Project 6: Light Canvas (Kapture CX Voicebot Integration "Maya") */}
+<section className="w-full bg-canvas-pure-white text-canvas-dark py-24 md:py-32 reveal">
+<div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop">
+<div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div className="lg:col-span-7 order-2 lg:order-1 relative">
+<div className="absolute -inset-6 -z-10 rounded-[32px] blur-[50px] opacity-15" style={{ background: "var(--hero-glow-2)", transition: "background 700ms ease" }} aria-hidden></div>
+<div className="rounded-[32px] glass-panel-light spring-card p-6 md:p-8 overflow-hidden relative glass-tint-warm">
+<div className="flex items-center justify-between pb-6 mb-6">
+<div className="flex items-center gap-3">
+<span className="material-symbols-outlined text-primary-container">support_agent</span>
+<span className="font-title-md text-title-md font-semibold text-canvas-dark">Maya — Outbound Collections</span>
+</div>
+<span className="px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">RBI 8AM–7PM IST</span>
+</div>
+<div className="space-y-3 mb-6">
+<div className="p-3 rounded-[16px] glass-panel-subtle flex items-center justify-between">
+<div className="flex items-center gap-3">
+<span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span className="font-label-sm text-label-sm text-canvas-dark font-medium">State: AUTHENTICATING</span>
+<span className="font-label-sm text-label-sm text-text-muted-light">webhook → verify</span>
+</div>
+<span className="font-mono text-[11px] bg-canvas-light-gray px-2 py-1 rounded-full">DOB + •••• 4821</span>
+</div>
+<div className="grid grid-cols-3 gap-3">
+<div className="p-3 rounded-[16px] bg-canvas-pure-white shadow-sm text-center">
+<div className="font-label-sm text-label-sm text-text-muted-light">Auth</div>
+<div className="font-title-md text-title-md text-primary-container font-bold">✓ Verified</div>
+<div className="font-label-sm text-label-sm text-text-muted-light">Backend, not prompt</div>
+</div>
+<div className="p-3 rounded-[16px] bg-canvas-pure-white shadow-sm text-center">
+<div className="font-label-sm text-label-sm text-text-muted-light">Call Window</div>
+<div className="font-title-md text-title-md text-canvas-dark font-bold">08:00–19:00</div>
+<div className="font-label-sm text-label-sm text-primary">IST enforced</div>
+</div>
+<div className="p-3 rounded-[16px] bg-canvas-pure-white shadow-sm text-center">
+<div className="font-label-sm text-label-sm text-text-muted-light">Tone</div>
+<div className="font-title-md text-title-md text-tertiary-container font-bold">Polite</div>
+<div className="font-label-sm text-label-sm text-text-muted-light">Compliant</div>
+</div>
+</div>
+</div>
+<div className="rounded-[16px] bg-canvas-pure-white shadow-sm p-3 mb-3">
+<div className="flex items-center gap-2 mb-2"><span className="material-symbols-outlined text-primary-container text-[16px]">call</span><span className="font-label-sm text-label-sm text-canvas-dark font-medium">Webhook State Machine — Node.js</span></div>
+<div className="flex items-center gap-1.5 font-mono text-[11px] text-text-muted-light overflow-x-auto">
+<span className="px-2 py-1 rounded-full bg-canvas-light-gray">init</span><span>→</span><span className="px-2 py-1 rounded-full bg-primary-container text-white">auth</span><span>→</span><span className="px-2 py-1 rounded-full bg-canvas-light-gray">collect</span><span>→</span><span className="px-2 py-1 rounded-full bg-canvas-light-gray">close</span>
+<span className="ml-auto text-primary">server controls transition</span>
+</div>
+</div>
+<div className="p-3 rounded-[16px] bg-canvas-light-gray flex items-center justify-between">
+<div className="flex items-center gap-2"><span className="material-symbols-outlined text-primary-container text-[18px]">record_voice_over</span><span className="font-body-md text-body-md text-canvas-dark font-medium">Vapi.ai • GPT-4o • Deepgram Nova-3 • ElevenLabs</span></div>
+</div>
+</div>
+</div>
+<div className="lg:col-span-5 flex flex-col order-1 lg:order-2">
+<span className="font-label-sm text-label-sm uppercase tracking-wider text-primary-container mb-4">Outbound Voice AI • Finance</span>
+<h3 className="font-headline-lg text-headline-lg text-canvas-dark mb-4 tracking-tight">
+              Kapture CX Voicebot Integration — "Maya"
+            </h3>
+<p className="font-body-lg text-body-lg text-text-muted-light mb-6">
+              Outbound finance collections voice agent that calls customers for overdue EMIs — politely, compliantly. Backend-enforced auth via Node.js webhook controls state transitions and sensitive data, verifying DOB + last 4 digits and enforcing RBI 8 AM–7 PM IST window.
+            </p>
+<div className="p-4 rounded-DEFAULT bg-canvas-light-gray mb-6">
+<div className="font-label-sm text-label-sm text-primary-container uppercase mb-1">Measurable Impact</div>
+<div className="font-title-md text-title-md text-canvas-dark font-medium">Compliant, human-like collections at scale with server-side guardrails — not just prompt instructions.</div>
+</div>
+<div className="flex flex-wrap gap-2 mb-8">
+<span className="px-3 py-1 rounded-full bg-canvas-light-gray text-canvas-dark font-label-sm text-label-sm">Node.js</span>
+<span className="px-3 py-1 rounded-full bg-canvas-light-gray text-canvas-dark font-label-sm text-label-sm">Express.js</span>
+<span className="px-3 py-1 rounded-full bg-canvas-light-gray text-canvas-dark font-label-sm text-label-sm">Vapi.ai</span>
+<span className="px-3 py-1 rounded-full bg-canvas-light-gray text-canvas-dark font-label-sm text-label-sm">GPT-4o</span>
+<span className="px-3 py-1 rounded-full bg-canvas-light-gray text-canvas-dark font-label-sm text-label-sm">Deepgram Nova-3</span>
+<span className="px-3 py-1 rounded-full bg-canvas-light-gray text-canvas-dark font-label-sm text-label-sm">ElevenLabs</span>
+</div>
+<div className="flex flex-wrap gap-3">
+<a href="https://github.com/palprashant156/Kapture-CX-Voicebot-Integration" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-button-primary spring-hover font-label-md text-label-md">
+<svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0.3a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 0.3z"/></svg>
+<span>View Code</span>
+<span className="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+{/* Project 7: Dark Obsidian (System Design Simulator Backend) */}
+<section className="w-full bg-surface-container-lowest text-on-surface py-24 md:py-32 reveal">
+<div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop">
+<div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div className="lg:col-span-5 flex flex-col">
+<span className="font-label-sm text-label-sm uppercase tracking-wider text-secondary mb-4">Backend Simulation • Distributed Systems</span>
+<h3 className="font-headline-lg text-headline-lg text-canvas-pure-white mb-4 tracking-tight">
+              System Design Simulator (Backend)
+            </h3>
+<p className="font-body-lg text-body-lg text-text-secondary-dark mb-6">
+              NestJS backend for simulating system design concepts — Prisma for DB modeling, WebSockets for real-time sync, BullMQ for background jobs/queues, all containerized with Docker.
+            </p>
+<div className="p-4 rounded-DEFAULT bg-surface-container mb-6">
+<div className="font-label-sm text-label-sm text-primary uppercase mb-1">Measurable Impact</div>
+<div className="font-title-md text-title-md text-canvas-pure-white font-medium">Production-grade NestJS + Prisma + BullMQ architecture with real-time WebSocket updates.</div>
+</div>
+<div className="flex flex-wrap gap-2 mb-8">
+<span className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">NestJS</span>
+<span className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Prisma</span>
+<span className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">PostgreSQL</span>
+<span className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">WebSockets</span>
+<span className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">BullMQ</span>
+<span className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">TypeScript</span>
+<span className="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Docker</span>
+</div>
+<div className="flex flex-wrap gap-3">
+<a href="https://github.com/palprashant156/system-design-simulator-BE" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-button-primary spring-hover font-label-md text-label-md">
+<svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0.3a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 0.3z"/></svg>
+<span>View Code</span>
+<span className="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+</div>
+</div>
+<div className="lg:col-span-7 relative">
+<div className="absolute -inset-6 -z-10 rounded-[32px] blur-[50px] opacity-20" style={{ background: "var(--hero-glow-1)", transition: "background 700ms ease" }} aria-hidden></div>
+<div className="rounded-[32px] glass-panel spring-card p-6 md:p-8 overflow-hidden relative glass-tint-cool">
+<div className="flex items-center justify-between pb-6 mb-6">
+<div className="flex items-center gap-2">
+<span className="w-3 h-3 rounded-full bg-error/70"></span>
+<span className="w-3 h-3 rounded-full bg-tertiary/70"></span>
+<span className="w-3 h-3 rounded-full bg-primary/70"></span>
+<span className="ml-3 font-label-sm text-label-sm text-text-muted-dark">simulator.be — nest start</span>
+</div>
+<span className="px-2.5 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm">● DOCKER</span>
+</div>
+<div className="grid grid-cols-3 gap-3 mb-6">
+<div className="p-3 rounded-[16px] glass-panel-subtle text-center">
+<div className="font-label-sm text-label-sm text-text-muted-dark">Prisma</div>
+<div className="font-label-md text-label-md text-canvas-pure-white font-bold mt-1">Schema → DB</div>
+<div className="font-label-sm text-label-sm text-primary">PostgreSQL</div>
+</div>
+<div className="p-3 rounded-[16px] glass-panel-subtle text-center">
+<div className="font-label-sm text-label-sm text-text-muted-dark">BullMQ</div>
+<div className="font-title-md text-title-md text-tertiary font-bold">Queue</div>
+<div className="font-label-sm text-label-sm text-text-muted-dark">Jobs • Workers</div>
+</div>
+<div className="p-3 rounded-[16px] glass-panel-subtle text-center">
+<div className="font-label-sm text-label-sm text-text-muted-dark">WebSockets</div>
+<div className="font-title-md text-title-md text-primary font-bold">Realtime</div>
+<div className="font-label-sm text-label-sm text-text-muted-dark">Gateway</div>
+</div>
+</div>
+<div className="rounded-[16px] glass-panel-subtle p-3 mb-4 font-mono text-[11px]">
+<div className="flex items-center gap-2 mb-2 text-text-muted-dark"><span className="material-symbols-outlined text-primary text-[14px]">terminal</span><span>prisma/schema.prisma</span><span className="ml-auto text-primary">● synced</span></div>
+<div className="text-primary">model <span className="text-tertiary">Simulation</span> {"{"}</div>
+<div className="pl-3 text-on-surface">id String @id @default(cuid())</div>
+<div className="pl-3 text-on-surface">status String // queued | running | done</div>
+<div className="pl-3 text-on-surface">createdAt DateTime @default(now())</div>
+<div className="text-primary">{"}"}</div>
+</div>
+<div className="space-y-2 font-mono text-[11px]">
+<div className="p-2.5 rounded-[12px] bg-surface-container-high flex items-center justify-between">
+<span className="text-primary">BullMQ • job:8321</span><span className="text-tertiary">completed</span><span className="text-text-muted-dark">42ms</span>
+</div>
+<div className="p-2.5 rounded-[12px] bg-surface-container-high flex items-center justify-between">
+<span className="text-primary">WS • broadcast</span><span className="text-on-surface">simulation:update</span><span className="text-text-muted-dark">realtime</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 </div>
 {/* SECTION 4: EXPERIENCE TIMELINE */}
 <section className="w-full bg-canvas-dark text-on-surface py-24 md:py-32 reveal" id="experience">
@@ -755,7 +1018,7 @@ export default function Page() {
 </div>
 </div>
 </section>
-</div></main><footer className="w-full bg-canvas-card-dark border-t border-border-dark reveal" style={{ backdropFilter: "blur(20px) saturate(150%)" }}><div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop py-12 md:py-16"><div className="flex items-center gap-2 pb-8 border-b border-border-dark text-label-sm font-label-sm text-text-muted-dark"><a className="hover:text-on-surface transition-colors" href="#">Portfolio</a><span>/</span><span className="text-on-surface-variant">Prashant Pal</span><span>/</span><span className="text-on-surface">Full Stack Engineer</span></div><div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-10 border-b border-border-dark"><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Featured Systems</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><a className="hover:text-primary transition-colors" href="#projects">Fraud Monitoring Platform</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Doomscrolling Analytics Engine</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Daily Fuel Logistics</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Quick Serve Microservices</a></li></ul></div><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Core Engineering Stack</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><span className="hover:text-on-surface transition-colors">Node.js & NestJS Architecture</span></li><li><span className="hover:text-on-surface transition-colors">React 19 & Next.js App Router</span></li><li><span className="hover:text-on-surface transition-colors">PostgreSQL & Redis Caching</span></li><li><span className="hover:text-on-surface transition-colors">AWS Infrastructure & Docker</span></li></ul></div><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Connect & Dispatch</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="https://github.com" rel="noreferrer" target="_blank">GitHub</a></li><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="https://linkedin.com" rel="noreferrer" target="_blank">LinkedIn</a></li><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="mailto:palprashant156@gmail.com">palprashant156@gmail.com</a></li></ul></div></div><div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 font-label-sm text-label-sm text-text-muted-dark"><div>Copyright © 2025 Prashant Pal. All rights reserved. Built with precision & performance in mind.</div><div className="flex items-center gap-6"><a className="hover:text-on-surface transition-colors" href="#">Architecture Blueprint</a><a className="hover:text-on-surface transition-colors" href="#">Telemetry & Privacy</a><a className="hover:text-on-surface transition-colors" href="#">Sitemap</a></div></div></div></footer>
+</div></main><footer className="w-full bg-canvas-card-dark border-t border-border-dark reveal" style={{ backdropFilter: "blur(20px) saturate(150%)" }}><div className="max-w-[75rem] mx-auto px-gutter-mobile md:px-gutter-desktop py-12 md:py-16"><div className="flex items-center gap-2 pb-8 border-b border-border-dark text-label-sm font-label-sm text-text-muted-dark"><a className="hover:text-on-surface transition-colors" href="#">Portfolio</a><span>/</span><span className="text-on-surface-variant">Prashant Pal</span><span>/</span><span className="text-on-surface">Full Stack Engineer</span></div><div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-10 border-b border-border-dark"><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Featured Systems</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><a className="hover:text-primary transition-colors" href="#projects">Fraud Monitoring Platform</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Doomscrolling Analytics Engine</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Daily Fuel Logistics</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Quick Serve Microservices</a></li><li><a className="hover:text-primary transition-colors" href="#projects">AI Health Screening Voice App</a></li><li><a className="hover:text-primary transition-colors" href="#projects">Kapture CX Voicebot — Maya</a></li><li><a className="hover:text-primary transition-colors" href="#projects">System Design Simulator</a></li></ul></div><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Core Engineering Stack</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><span className="hover:text-on-surface transition-colors">Node.js & NestJS Architecture</span></li><li><span className="hover:text-on-surface transition-colors">React 19 & Next.js App Router</span></li><li><span className="hover:text-on-surface transition-colors">PostgreSQL & Redis Caching</span></li><li><span className="hover:text-on-surface transition-colors">AWS Infrastructure & Docker</span></li></ul></div><div><div className="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Connect & Dispatch</div><ul className="space-y-3 font-body-md text-body-md text-text-secondary-dark"><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="https://github.com" rel="noreferrer" target="_blank">GitHub</a></li><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="https://linkedin.com" rel="noreferrer" target="_blank">LinkedIn</a></li><li><a className="hover:text-on-surface transition-colors flex items-center gap-2" href="mailto:palprashant156@gmail.com">palprashant156@gmail.com</a></li></ul></div></div><div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 font-label-sm text-label-sm text-text-muted-dark"><div>Copyright © 2025 Prashant Pal. All rights reserved. Built with precision & performance in mind.</div><div className="flex items-center gap-6"><a className="hover:text-on-surface transition-colors" href="#">Architecture Blueprint</a><a className="hover:text-on-surface transition-colors" href="#">Telemetry & Privacy</a><a className="hover:text-on-surface transition-colors" href="#">Sitemap</a></div></div></div></footer>
 
 
     </>
