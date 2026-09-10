@@ -7,7 +7,7 @@ import { useTheme } from "./ThemeContext";
  * ThemeSwitcher — reusable, isolated component
  * Fixed icon-only toggle top-right, dropdown with 6 options (icon+label), pill highlight, outside-click close, responsive anchoring
  */
-export default function ThemeSwitcher() {
+export default function ThemeSwitcher({ inline = false }: { inline?: boolean }) {
   const { themeId, setTheme, themes } = useTheme();
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -36,18 +36,27 @@ export default function ThemeSwitcher() {
   return (
     <div
       ref={wrapperRef}
-      className="fixed top-4 right-4 z-[100] flex flex-col items-end"
+      className={
+        inline
+          ? "relative flex flex-col items-end self-center"
+          : "fixed top-4 right-4 z-[100] flex flex-col items-end"
+      }
       // Ensure never overflows viewport on mobile — parent is fixed, dropdown anchored via right-0
     >
-      {/* Toggle button — icon-only, fixed top-right, Liquid Glass */}
+      {/* Toggle button — icon-only, Liquid Glass — matches profile icon (w-8 h-8, glass) */}
       <button
         aria-label="Toggle theme switcher"
         aria-expanded={open}
         aria-haspopup="menu"
         onClick={() => setOpen((v) => !v)}
-        className="w-10 h-10 rounded-full glass-button spring-hover flex items-center justify-center text-[var(--text-primary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+        className={`rounded-full glass-button spring-hover flex items-center justify-center text-[var(--text-primary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] self-center ${
+          inline ? "w-8 h-8" : "w-10 h-10"
+        }`}
       >
-        <span className="material-symbols-outlined text-[20px] leading-none select-none" aria-hidden>
+        <span
+          className={`material-symbols-outlined leading-none select-none ${inline ? "text-[18px]" : "text-[20px]"}`}
+          aria-hidden
+        >
           {open ? "close" : current?.icon ?? "palette"}
         </span>
       </button>
@@ -56,7 +65,8 @@ export default function ThemeSwitcher() {
       <div
         role="menu"
         aria-orientation="vertical"
-        className={`mt-3 w-[min(280px,calc(100vw-2rem))] rounded-[24px] glass-panel overflow-hidden
+        className={`w-[min(280px,calc(100vw-2rem))] rounded-[24px] glass-panel overflow-hidden
+          ${inline ? "absolute top-full right-0 mt-3" : "mt-3"}
           ${open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}
         `}
         style={{

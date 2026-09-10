@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeContext";
-import ThemeSwitcher from "@/components/theme/ThemeSwitcher";
 import ThemedBackground from "@/components/theme/ThemedBackground";
 
 const inter = Inter({
@@ -76,7 +75,6 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <ThemedBackground />
-          <ThemeSwitcher />
           {children}
         </ThemeProvider>
       </body>
