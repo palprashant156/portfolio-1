@@ -61,11 +61,11 @@ export default function ThemeSwitcher({ inline = false }: { inline?: boolean }) 
         </span>
       </button>
 
-      {/* Dropdown panel — Liquid Glass 24px */}
+      {/* Dropdown panel — opaque popover (less transparent than generic glass-panel) */}
       <div
         role="menu"
         aria-orientation="vertical"
-        className={`w-[min(280px,calc(100vw-2rem))] rounded-[24px] glass-panel overflow-hidden
+        className={`w-[min(280px,calc(100vw-2rem))] rounded-[24px] glass-panel theme-dropdown-panel overflow-hidden
           ${inline ? "absolute top-full right-0 mt-3" : "mt-3"}
           ${open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}
         `}

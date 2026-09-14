@@ -297,6 +297,19 @@ a {
   .spring-link:active {
     transform: scale(0.96);
   }
+
+  /* Theme switcher dropdown — more opaque than generic glass-panel */
+  .glass-panel.theme-dropdown-panel {
+    background: var(--surface) !important;
+    /* Solid theme surface ensures content behind is not visible; keep subtle blur for edge softness */
+    backdrop-filter: blur(20px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+    border-color: var(--border-color) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 16px 48px rgba(0, 0, 0, 0.28),
+      0 4px 16px rgba(0, 0, 0, 0.18) !important;
+  }
 }
 
 /* Backdrop-filter fallback for unsupported browsers — solid semi-transparent */
@@ -322,6 +335,13 @@ a {
     background: var(--accent) !important;
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
+  }
+  .glass-panel.theme-dropdown-panel {
+    background: var(--surface) !important;
+    border-color: var(--border-color) !important;
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.28),
+      0 4px 16px rgba(0, 0, 0, 0.18) !important;
   }
 }
 
