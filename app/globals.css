@@ -3,30 +3,30 @@
 @tailwind utilities;
 
 :root {
-  /* Night — default (matches original portfolio, no FOUC) */
-  --bg-gradient: linear-gradient(135deg, #020208 0%, #0e0e10 50%, #1D1D1F 100%);
-  --accent: #0071e3;
-  --accent-hover: #0077ED;
-  --text-primary: #e4e2e4;
-  --text-secondary: #A1A1A6;
-  --text-muted: #86868B;
-  --text-on-dark: #e4e2e4;
-  --text-on-light: #1D1D1F;
-  --text-secondary-on-dark: #A1A1A6;
-  --text-secondary-on-light: #3a3a4a;
-  --text-muted-on-dark: #86868B;
-  --text-muted-on-light: #6E6E73;
-  --surface: #131315;
-  --surface-dark: #000000;
-  --surface-light: #FFFFFF;
-  --surface-light-container: #F5F5F7;
-  --surface-container: #1f1f21;
-  --surface-container-high: #2a2a2c;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(0, 0, 0, 0.06);
-  --particle-color: rgba(171, 199, 255, 0.15);
-  --hero-glow-1: rgba(0, 113, 227, 0.2);
-  --hero-glow-2: rgba(171, 199, 255, 0.08);
+  /* Sunrise — default (first visit, no FOUC) */
+  --bg-gradient: linear-gradient(135deg, #1a0a0e 0%, #3a1a2e 45%, #8b3a2a 100%);
+  --accent: #ff8e53;
+  --accent-hover: #ff9a66;
+  --text-primary: #f5e6d3;
+  --text-secondary: #d4b89e;
+  --text-muted: #a68a6e;
+  --text-on-dark: #f5e6d3;
+  --text-on-light: #2d1b0e;
+  --text-secondary-on-dark: #d4b89e;
+  --text-secondary-on-light: #6b4a2e;
+  --text-muted-on-dark: #a68a6e;
+  --text-muted-on-light: #8c6a4a;
+  --surface: #1a0f14;
+  --surface-dark: #110a0f;
+  --surface-light: #fff7ed;
+  --surface-light-container: #ffedd5;
+  --surface-container: #22151a;
+  --surface-container-high: #332027;
+  --border-color: rgba(255,142,83,0.12);
+  --border-light: rgba(45,27,14,0.07);
+  --particle-color: rgba(255,142,83,0.22);
+  --hero-glow-1: rgba(255,142,83,0.22);
+  --hero-glow-2: rgba(255,180,123,0.12);
 }
 
 @layer base {

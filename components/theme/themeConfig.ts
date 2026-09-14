@@ -217,7 +217,7 @@ export const themes: Theme[] = [
   },
 ];
 
-export const defaultThemeId: ThemeId = "night";
+export const defaultThemeId: ThemeId = "sunrise";
 
 export function getThemeById(id: string): Theme {
   return themes.find((t) => t.id === id) ?? themes.find((t) => t.id === defaultThemeId)!;
